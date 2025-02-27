@@ -1,9 +1,17 @@
-<h1>All my lists</h1>
+<div class="container">
 
-<ul>
-  <% @lists.each do |list| %>
-    <li><%= link_to list.name, list_path(list) %></li>
-  <% end %>
-</ul>
+  <h1>All my lists</h1>
+  <%= link_to "New list", new_list_path(@movies) %>
 
-<%= link_to "New list", new_list_path(@movies) %>
+  <div class="container row justify-content-around gap-2">
+    <% @lists.each do |list| %>
+      <div class="card col-3">
+        <div class="card-body">
+          <h5 class="card-title"><%= list.name %></h5>
+          <p><%= link_to "More info", list_path(list), class:"btn btn-primary" %></p>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+</div>
