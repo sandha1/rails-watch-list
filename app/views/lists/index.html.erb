@@ -4,12 +4,20 @@
   </div>
 </div>
 
-<div class="container">
-  <%= link_to "Create a movie list", new_list_path(@movies), class:"btn btn-primary" %>
+<div class="container mb-5">
+
+  <div class="d-flex justify-content-center align-items-center p-3">
+    <%= link_to "Create a movie list", new_list_path(@movies), class:"btn btn-primary" %>
+   </div>
 
   <div class="container row justify-content-around gap-2">
     <% @lists.each do |list| %>
       <div class="card col-3">
+        <% if list.photo.key? %>
+          <%= cl_image_tag list.photo.key, crop: :fill %>
+        <% else %>
+          <%= image_tag "default-list-image.png", alt: "Le Wagon" %>
+        <% end %>
         <div class="card-body">
           <h5 class="card-title"><%= list.name %></h5>
           <p><%= link_to "More info", list_path(list), class:"btn btn-primary" %></p>

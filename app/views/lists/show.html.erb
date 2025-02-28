@@ -1,8 +1,12 @@
-<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images.unsplash.com/photo-1489599849927-2ee91cede3ba);">
-  <div class="container">
-    <h1 class="pb-5"><%= @list.name %></h1>
+<% if @list.photo.key? %>
+  <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= cl_image_path @list.photo.key %>);">
+<% else %>
+  <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= image_path "default-list-image.png" %>);">
+<% end %>
+    <div class="container">
+      <h1 class="pb-5"><%= @list.name %></h1>
+    </div>
   </div>
-</div>
 
 <div class="container mb-5">
 
@@ -10,9 +14,9 @@
     <h1><%= link_to "Bookmark a movie", new_list_bookmark_path(@list), class:"btn btn-primary" %></h1>
   </div>
 
-
   <div class="container row justify-content-around gap-2">
     <% @bookmarks.each do |bookmark| %>
+    <% if bookmark.list = @list %>
       <div class="card col-3">
         <img src="<%= bookmark.movie.poster_url %>" class="card-img-top" alt="<%= bookmark.movie.title %>">
         <div class="card-body">
@@ -27,6 +31,7 @@
           <% end %>
         </div>
       </div>
+      <% end %>
     <% end %>
   </div>
 
