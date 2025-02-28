@@ -1,7 +1,11 @@
-<div class="container">
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images.unsplash.com/photo-1489599849927-2ee91cede3ba);">
+  <div class="container">
+    <h1 class="pb-5">Save any kind of movies</h1>
+  </div>
+</div>
 
-  <h1>All my lists</h1>
-  <%= link_to "New list", new_list_path(@movies) %>
+<div class="container">
+  <%= link_to "Create a movie list", new_list_path(@movies), class:"btn btn-primary" %>
 
   <div class="container row justify-content-around gap-2">
     <% @lists.each do |list| %>
